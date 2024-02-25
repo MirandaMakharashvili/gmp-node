@@ -1,0 +1,22 @@
+{
+  "name": "gmp-node",
+  "version": "1.0.0",
+  "description": "Project developed during GMP node course.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Miranda Makharashvili",
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "~7.0.3",
+    "supertest": "6.2.3",
+    "jest": "^28.1.0",
+    "nodemon": "3.1.0"
+  },
+  "dependencies": {
+    "pg": "8.7.3",
+    "uuid": "~8.3.2",
+    "express": "^4.18.1"
+  }
+}
