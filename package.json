@@ -2,9 +2,9 @@
   "name": "gmp-node",
   "version": "1.0.0",
   "description": "Project developed during GMP node course.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon src/index.js"
   },
   "author": "Miranda Makharashvili",
   "license": "MIT",

@@ -1,0 +1,1 @@
+require('./tasks/task1');
