@@ -1,4 +1,4 @@
-const getRandomNumber = require('../modules/getRandomNumber');
+const getRandomNumber = require('../modules/module_1/getRandomNumber');
 
 const randomNumber = getRandomNumber(1, 1000);
 
