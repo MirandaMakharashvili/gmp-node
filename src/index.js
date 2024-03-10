@@ -1,1 +1,1 @@
-require('./tasks/task1');
+require('./tasks/task2');
