@@ -8,48 +8,30 @@ const timer = (ms) => new Promise((res) => setTimeout(res, ms));
 
 function execProcess(command) {
     let result = [];
-
-    childProcess.exec(command, { timeout: 5 * 1000 }, (err, stdout) => {
-        if (err) {
-            console.log(`error: ${err}`);
-            return;
-        }
-
-        const lines = stdout.toString().split('\r\n');
-
-        lines.forEach(function (line) {
-            let lineItem = line;
-            result.push(lineItem);
-        });
-    });
-
+    const stdout = childProcess.execSync(command);
+    result = stdout.toString().split('\r\n');
+    console.log(result);
     return result;
 }
 
 function programUses() {
     const currOS = os.platform();
-    let result = [];
+    const COMMANDS = {
+        win32: 'powershell "Get-Process | Sort-Object CPU -Descending | Select-Object -Property Name, CPU, WorkingSet -First 1 | ForEach-Object { $_.Name , $_.CPU , $_.WorkingSet }"',
+        darwin: 'ps -A -o %cpu,%mem,comm | sort -nr | head -n 1',
+        linux: 'ps -A -o %cpu,%mem,comm | sort -nr | head -n 1',
+    };
 
-    if (currOS === 'win32') {
-        result = execProcess(
-            'powershell "Get-Process | Sort-Object CPU -Descending | Select-Object -Property Name, CPU, WorkingSet -First 1 | ForEach-Object { $_.Name , $_.CPU , $_.WorkingSet }"',
-        );
-    }
-
-    if (currOS === 'darwin') {
-        result = execProcess('ps -A -o %cpu,%mem,comm | sort -nr | head -n 1');
-    }
-
-    if (currOS === 'linux') {
-        result = execProcess('ps -A -o %cpu,%mem,comm | sort -nr | head -n 1');
-    }
-
-    return result;
+    return execProcess(COMMANDS[currOS]);
 }
 
 //Refresh rate is ten times per second
 /* setInterval(() => {
-    programUses();
+    const unixTime = Math.floor(new Date().getTime() / 1000);
+    const processSys = programUses();
+    const logItem = `${unixTime} : ${processSys.join(' ')} \n`;
+    console.clear();
+    console.log(logItem);
 }, 100); */
 
 async function writeLog() {
