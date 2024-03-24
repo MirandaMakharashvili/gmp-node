@@ -1,6 +1,6 @@
-import { SUPPORTED_COUNTRIES } from '../../models/config';
-import { COUNTRIES } from '../../models/countries';
-import { shortenPublicHoliday, validateInput } from '../../moduls/helpers';
+import { SUPPORTED_COUNTRIES } from '../../models/test_models/config';
+import { COUNTRIES } from '../../models/test_models/countries';
+import { shortenPublicHoliday, validateInput } from '../../moduls/task4/helpers';
 
 describe('validate provided country', () => {
     it('should return true', async () => {

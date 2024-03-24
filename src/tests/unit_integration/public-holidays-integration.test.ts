@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { PUBLIC_HOLIDAYS_API_URL, SUPPORTED_COUNTRIES } from '../../models/config';
-import { COUNTRIES } from '../../models/countries';
-import { ANDORRA_HOLIDAYS, GB_NEXT_HOLIDAYS } from '../../models/public-holidays';
+import { PUBLIC_HOLIDAYS_API_URL, SUPPORTED_COUNTRIES } from '../../models/test_models/config';
+import { COUNTRIES } from '../../models/test_models/countries';
+import { ANDORRA_HOLIDAYS, GB_NEXT_HOLIDAYS } from '../../models/test_models/public-holidays';
 
 describe('public holidays API integration tests', () => {
     it('should return list of public holidays', async () => {
