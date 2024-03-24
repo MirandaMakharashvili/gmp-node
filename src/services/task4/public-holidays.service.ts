@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { PUBLIC_HOLIDAYS_API_URL } from '../models/config';
-import { validateInput, shortenPublicHoliday } from '../moduls/helpers';
-import { PublicHoliday, PublicHolidayShort } from '../models/types';
+import { PUBLIC_HOLIDAYS_API_URL } from '../../models/test_models/config';
+import { validateInput, shortenPublicHoliday } from '../../moduls/task4/helpers';
+import { PublicHoliday, PublicHolidayShort } from '../../models/test_models/types';
 
 // Swagger https://date.nager.at/swagger/index.html
 

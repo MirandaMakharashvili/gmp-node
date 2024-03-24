@@ -1,5 +1,5 @@
-import { SUPPORTED_COUNTRIES } from '../models/config';
-import { PublicHoliday, PublicHolidayShort } from '../models/types';
+import { SUPPORTED_COUNTRIES } from '../../models/test_models/config';
+import { PublicHoliday, PublicHolidayShort } from '../../models/test_models/types';
 
 const validateCountry = (country: string) => {
   return SUPPORTED_COUNTRIES.includes(country);

@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { checkIfTodayIsPublicHoliday, getListOfPublicHolidays, getNextPublicHolidays } from '../../services/public-holidays.service';
-import { ANDORRA_HOLIDAYS, ANDORRA_SHORTEN_HOLIDAYS, GB_NEXT_HOLIDAYS, GB_NEXT_HOLIDAYS_RESULT } from '../../models/public-holidays';
-import { PUBLIC_HOLIDAYS_API_URL, SUPPORTED_COUNTRIES } from '../../models/config';
+import { checkIfTodayIsPublicHoliday, getListOfPublicHolidays, getNextPublicHolidays } from '../../services/task4/public-holidays.service';
+import { ANDORRA_HOLIDAYS, ANDORRA_SHORTEN_HOLIDAYS, GB_NEXT_HOLIDAYS, GB_NEXT_HOLIDAYS_RESULT } from '../../models/test_models/public-holidays';
+import { PUBLIC_HOLIDAYS_API_URL, SUPPORTED_COUNTRIES } from '../../models/test_models/config';
 
 describe('get list of public holidays', () => {
     it('should return list of public holidays', async () => {

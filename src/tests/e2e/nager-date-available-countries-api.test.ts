@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { COUNTRIES } from '../../models/countries';
+import { COUNTRIES } from '../../models/test_models/countries';
 
 
 
