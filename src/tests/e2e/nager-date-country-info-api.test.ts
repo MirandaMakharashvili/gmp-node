@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { ANDORRA, COUNTRIES } from '../../models/countries';
+import { ANDORRA, COUNTRIES } from '../../models/test_models/countries';
 
 describe('Nager.Date API - V3', () => {
     const countries = COUNTRIES;
