@@ -1,0 +1,27 @@
+[
+    {
+        "id": "dffd6fa8-be6b-47f6-acff-455612620ac2",
+        "userId": "0fe36d16-49bc-4aab-a227-f84df899a6cb",
+        "cartId": "",
+        "items": [
+            {
+                "product": {
+                    "_id": "51422fcd-0366-4186-ad5b-c23059b6f64f"
+                },
+                "count": 2
+            }
+        ],
+        "payment": {
+            "type": "paypal",
+            "address": null,
+            "creditCard": null
+        },
+        "delivery": {
+            "type": "post",
+            "address": null
+        },
+        "comments": "",
+        "status": "created",
+        "total": 2
+    }
+]
