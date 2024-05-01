@@ -1,4 +1,4 @@
-import { ProductEntity } from "../../../models/task6/schemas/product.entity";
+import { ProductEntity } from "../../../models/task7/product.model";
 
 export function handleProductResData(pruducts: ProductEntity[]) {
     const data = {

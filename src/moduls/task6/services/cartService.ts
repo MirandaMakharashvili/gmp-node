@@ -1,11 +1,11 @@
 import Joi from 'joi';
-import { CartEntity, CartItemEntity } from '../../../models/task6/schemas/cart.entity';
+import { CartEntity, CartItemEntity } from '../../../models/task7/cart.model';
 
 export function handleResData(cartItem: CartEntity) {
     const data = {
         data: {
             cart: {
-                id: cartItem?.id,
+                id: cartItem?.cartId,
                 items: cartItem?.items,
             },
             total: cartItem.items[0].product.price * cartItem.items[0].count,
