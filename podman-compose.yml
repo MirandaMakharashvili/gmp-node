@@ -1,19 +1,16 @@
 version: '3'
 services:
-  pgadmin:
-    container_name: pgadmin
+  mongodb:
+    container_name: nodegmp-nosql
     environment:
-      - POSTGRES_USER=node_gmp
-      - POSTGRES_PASSWORD=password123
-      - POSTGRES_DB=node_gmp
-      - PGADMIN_DEFAULT_EMAIL=username@user.com
-      - PGADMIN_DEFAULT_PASSWORD=pgadmin
-    image: dpage/pgadmin4
+      - MONGO_INITDB_ROOT_USERNAME: root
+      - MONGO_INITDB_ROOT_PASSWORD: nodegmp
+    image: mongo
     ports:
-      - '5050:80'
+      - '27017:27017'
     restart: unless-stopped
     volumes:
-      - pgadmin:/root/.pgadmin
+      - mongodb_data_container:/data/db
 
 volumes:
-  pgadmin: {}
+  mongodb_data_container:

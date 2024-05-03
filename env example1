@@ -1,9 +1,0 @@
-# App
-APP_HOST=http://localhost:8000
-APP_PORT=8000
-
-# Node
-NODE_ENV=development
-
-# mongoDB Configuration
-DATABASE_LOCAL=mongodb://localhost:27017/node_gmp
