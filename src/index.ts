@@ -1,42 +1,57 @@
-import { EntityManager, MikroORM, RequestContext } from '@mikro-orm/core';
-import { PostgreSqlDriver } from '@mikro-orm/postgresql';
-import express from 'express';
-import config from './config/orm.config';
-import { container, init } from './init';
+import express, { Request, Response, NextFunction } from 'express';
+import * as dotenv from 'dotenv';
+dotenv.config();
+import helmet from 'helmet';
+import mongoSanitize from 'express-mongo-sanitize';
+import hpp from 'hpp';
 
-/* export const container = {} as {
-    orm: MikroORM;
-    em: EntityManager;
-};
+const xss = require('xss-clean');
+const morgan = require('morgan');
 
-const init = async () => {
-    const orm = await MikroORM.init<PostgreSqlDriver>(config);
+const mongoose = require('mongoose');
+const DB = process.env.DATABASE_LOCAL;
 
-    const migrator = orm.getMigrator();
-    await migrator.up();
-
-    container.orm = orm;
-    container.em = orm.em;
-}; */
-
-init()
-    .then(() => {
-        const app = express();
-        const port = 8000;
-        const cartRouter = require('./moduls/task6/routes/cartRouter');
-        const productsRouter = require('./moduls/task6/routes/productsRouter');
-
-        app.use(express.json());
-        app.use((req, res, next) => RequestContext.create(container.orm.em, next));
-
-        app.use('/api/profile', cartRouter);
-        app.use('/api/products', productsRouter);
-
-        app.listen(port, () => {
-            console.log(`App running on port ${port}...`);
-        });
+mongoose
+    .connect(DB, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
     })
-    .catch((err) => {
-        console.error('Unable to initialize MikroORM or start the server:', err);
+    .then(() => console.log('MongoDB connection successful!'))
+    .catch((error: Error) => {
+        console.log(`Error connecting to MongoDB: ${error.message}`);
     });
-  
+
+const app = express();
+const port = 8000;
+
+app.use(helmet());
+
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'));
+}
+
+const cartRouter = require('./moduls/task8/routes/cartRouter');
+const productsRouter = require('./moduls/task8/routes/productsRouter');
+const auth = require('./moduls/task9/routes/userRoutes');
+
+app.use(express.json({ limit: '10kb' }));
+app.use(mongoSanitize());
+app.use(xss());
+app.use(
+    hpp({
+        whitelist: ['duration', 'ratingsQuantity', 'ratingsAverage', 'maxGroupSize', 'difficulty', 'price'],
+    }),
+);
+
+app.use((req: Request, res: Response, next: NextFunction) => {
+    req.body.requestTime = new Date().toISOString();
+    next();
+});
+
+app.use('/api/profile', cartRouter);
+app.use('/api/products', productsRouter);
+app.use('/api/auth', auth);
+
+app.listen(port, () => {
+    console.log(`App running on port ${port}...`);
+});

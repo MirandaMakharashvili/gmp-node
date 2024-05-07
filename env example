@@ -2,27 +2,13 @@
 APP_HOST=http://localhost:8000
 APP_PORT=8000
 
-# Mikro Specific
-MIKRO_ORM_DB_NAME=node_gmp
-MIKRO_ORM_HOST=localhost
-MIKRO_ORM_ENTITIES=dist/entities/*.js
-MIKRO_ORM_ENTITIES_TS=src/entities/*.ts
-MIKRO_ORM_MIGRATIONS_PATH=dist/migrations
-MIKRO_ORM_MIGRATIONS_PATH_TS=src/migrations
-MIKRO_ORM_MIGRATIONS_TABLE_NAME=__migration_history
-MIKRO_ORM_PASSWORD=password123
-MIKRO_ORM_PORT=5432
-MIKRO_ORM_TYPE=postgresql
-MIKRO_ORM_USER=node_gmp
-
 # Node
 NODE_ENV=development
 
-# Postgresql Configuration
-POSTGRES_PASSWORD=password123
-POSTGRES_USER=node_gmp
-POSTGRES_DB=node_gmp
+# mongoDB Configuration
+DATABASE_LOCAL=mongodb://localhost:27017/node_gmp
 
-# PGAdmin Configuration
-PGADMIN_DEFAULT_EMAIL=username@user.com
-PGADMIN_DEFAULT_PASSWORD=pgadmin
+#JWT
+JWT_SECRET=make-secure-and-try-make-long-pass
+JWT_EXPIRES_IN=2h
+JWT_COOKIE_EXPIRES_IN=2
