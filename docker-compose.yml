@@ -3,14 +3,29 @@ services:
   mongodb:
     container_name: nodegmp-nosql
     environment:
-      - MONGO_INITDB_ROOT_USERNAME: root
-      - MONGO_INITDB_ROOT_PASSWORD: nodegmp
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=nodegmp
     image: mongo
     ports:
       - '27017:27017'
     restart: unless-stopped
     volumes:
       - mongodb_data_container:/data/db
+  
+  nodegmp:
+    build: .
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '8000:8000'
+    depends_on:
+      - mongodb
+    environment:
+      - NODE_ENV=development
+      - DATABASE_LOCAL=mongodb://localhost:27017/node_gmp
+    restart: unless-stopped
+    command: npm run start:dev
 
 volumes:
   mongodb_data_container:
